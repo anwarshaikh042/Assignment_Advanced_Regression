@@ -22,34 +22,67 @@ Accurate and data-driven housing price predictions can empower individuals and p
 <!-- You don't have to answer all the questions - just the ones relevant to your project. -->
 
 ## Conclusions
-- Conclusion 1 from the analysis
-- Conclusion 2 from the analysis
-- Conclusion 3 from the analysis
-- Conclusion 4 from the analysis
-
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
-
-
+- Conclusion 1 from the Analyzing Numerical Data
+  * Majority of numerical data have outliers
+  * Dropping the all Outliers will causes loss information
+  *  hence ressigining fixed minimum values to these rows where feature value is outside the range of [25th Percentilie - 1.5 IOR, 75th percentilie + 1.5 IQR]
+  *  IQR or Iner Quartie Range = Difference between 75th percentilie and 25th percentilie values of features.
+  *  Target column 'SalePrice' is excluded in this.
+- Conclusion 2 from the Analyzing Categorical Features
+  * For 'Alley' Nan Means 'No access to alley.
+  * For 'BsmtQual','BsmtCond','BsmtExposure','BsmtFinType1','BsmtFinType2' Nan_means "No Bassement"
+  * For GarageType, GarageFinish, GarageQual, GarageCond Nan means "No Garage"
+  * Fpr FriplaceQu and Fence Nan means 'No Fire' Place and 'No Fence'
+  * MiscFeature - Nan means no additional features mentioned.
+- Conclusion 3 from the Analyzing Orderred Features
+  * LotShape : Slightly irregular LotShape have the highest SalePrice
+  * Utilities : Most of the house in the dataset have all the public utilities
+  * LandSlope : House at severse land slope have lowest SalePrice
+  * HouseStyle : 2 storied houses have the highest SalePrice
+  * ExterQual : House with Excellent qualtity of material on the exterior have the highest SalePrice
+  * ExterCond : House with Excellent condition of material on the exterior have the highest SalePrice
+  * House having excellent heating quality and Kitchen quality have highest SalePrice
+  * House With Typical funcationally have highest SalePrice. There are very few house that are severely damaged
+  * SalePirce range in Largest for house with average firplace quality
+  * SalePrice is highest of Garage is Finished
+  * The Range of SalePrice is widest for Typical/Average Garage qualtiy and Condition.
+  * there are very few house with excellent condition of garage
+  * House with Excellwnt Quality bassement have highest SalePrice
+  * House with good living quarters (BsmtFinshType1=GLQ) have highest SalePrice
+  * A lost of house have unfinished basement or no bassement (label = Not_applicable)
+- Conclusion 4 from the analysis Model Evaluation
+  * Ridge and Lasso Regression Model are built with optimum alpha calculated in GridSearchCV method. Optimum alpha = 9.0 for ridge and 0.0001 for lasso model.
+  * Model evaluation is done with R2 score and Root Mean Square Error.
+  * Lasso Regression is chosen as final model for having slightly better R-square value on test data.
+  * Out of 50 features in the final model, top 10 features in order of descending importance are ['1stFlrSF', '2ndFlrSF', 'OverallQual', 'OverallCond', 'SaleCondition_Partial', 'LotArea', 'BsmtFinSF1','SaleCondition_Normal', 'MSZoning_RL', 'Neighborhood_Somerst']
+  * Model coefficients are listed in a table along with the corresponding features , for example natural log of SalePrice will change by 0.124911 with unit change in the feature '1stFlrSF' when all
+  * the features remain constant. Negative sign in the coefficient signifies negative correlation between the predictor and target variable.
+  * Predicted value of SalePrice is tranformed into its original scale by performing antilog.
+    
 ## Technologies Used
 - library - version 1.0
+  * import numpy as np
+  * import pandas as pd
+  * import matplotlib.pyplot as plt
+  * import seaborn as sns
 - library - version 2.0
+  * from sklearn.model_selection import train_test_split
+  * from sklearn.impute import SimpleImputer
+  * from sklearn.preprocessing import StandardScaler
+  * from sklearn.linear_model import LinearRegression, Ridge, Lasso
+  * from sklearn.model_selection import GridSearchCV
+  * from sklearn.feature_selection import RFE
+  * import statsmodels.api as sm
 - library - version 3.0
+  * from sklearn.metrics import mean_squared_error, r2_score
 
-<!-- As the libraries versions keep on changing, it is recommended to mention the version of library used in this project -->
 
 ## Acknowledgements
 Give credit here.
-- This project was inspired by...
-- References if any...
-- This project was based on [this tutorial](https://www.example.com).
+- This project was inspired by the need for accurate housing price predictions in the dynamic real estate market, where homebuyers and sellers often lack data-driven tools to make informed decisions.
+- While developing this project, we consulted various books, online articles, and research papers related to real estate data analysis, machine learning, and regression techniques. These references provided valuable insights and guidance.
 
 
 ## Contact
-Created by [@githubusername] - feel free to contact me!
+Created by [[@githubusername](https://github.com/anwarshaikh042)] - feel free to contact me!
 
-
-<!-- Optional -->
-<!-- ## License -->
-<!-- This project is open source and available under the [... License](). -->
-
-<!-- You don't have to include all sections - just the one's relevant to your project -->
